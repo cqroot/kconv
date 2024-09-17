@@ -1,3 +1,4 @@
+#include "color.h"
 #include "data_unit.h"
 #include "define.h"
 #include <stdio.h>
@@ -50,7 +51,7 @@ int main(int argc, char *argv[])
         return RET_ERR_PARAM;
     }
     if (ret != RET_OK) {
-        printf("ERROR: %d\n", ret);
+        printf(COLOR_FG_RED "ERROR: %d\n" COLOR_RESET, ret);
     }
 
     return RET_OK;

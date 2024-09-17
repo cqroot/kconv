@@ -1,4 +1,5 @@
 #include "data_unit.h"
+#include "color.h"
 #include "define.h"
 #include "strutil.h"
 #include <stdio.h>
@@ -27,8 +28,10 @@ data_unit_t units[] = {
 
 static RET_CODE_E convert(const double val, const double base)
 {
-    printf("val: %f, base: %f.\n", val, base);
-    printf("Result:\n");
+    printf(COLOR_FG_BLUE "\n" COLOR_RESET);
+    printf(COLOR_FG_BLUE " =======================\n" COLOR_RESET);
+    printf(COLOR_FG_BLUE "   Data Unix Converter  \n" COLOR_RESET);
+    printf(COLOR_FG_BLUE " =======================\n" COLOR_RESET);
     for (int i = ARRAY_LEN(units) - 1; i >= 0; --i) {
         if (units[i].hidden) {
             continue;
@@ -39,7 +42,9 @@ static RET_CODE_E convert(const double val, const double base)
         str_trim(result, '0');
         str_trim(result, '.');
 
-        printf("  %-8s (%2s):  %s\n", units[i].desc, units[i].unit, result);
+        printf(COLOR_FG_CYAN "  %-8s" COLOR_FG_YELLOW " (%2s)" COLOR_RESET
+                             ":  %s\n",
+               units[i].desc, units[i].unit, result);
     }
     return RET_OK;
 }
