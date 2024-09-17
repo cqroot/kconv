@@ -7,12 +7,20 @@
 
 void show_help()
 {
-    printf("Usage: uconv NUMBER[SUFFIX]\n");
+    printf("Usage: uconv [PREFIX]NUMBER[SUFFIX]\n");
     printf("   or: uconv OPTION\n");
     printf("\n");
     printf("OPTIONS:\n");
     printf("  -h, --help     display this help and exit\n");
     printf("  -v, --version  output version information and exit\n");
+    printf("\n");
+    printf("PREFIX and SUFFIX:\n");
+    printf("  Data Unit Converter:\n");
+    printf("    <NUMBER>TB  <NUMBER>tB  <NUMBER>GB  <NUMBER>gb\n");
+    printf("    <NUMBER>MB  <NUMBER>mB  <NUMBER>KB  <NUMBER>kB\n");
+    printf("    <NUMBER>B   <NUMBER>b\n");
+    printf("  Unix Timestamp Converter:\n");
+    printf("    <NUMBER>    (Length 10)\n");
 }
 
 void show_version()
