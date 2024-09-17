@@ -2,19 +2,38 @@
 #include <stdio.h>
 #include <string.h>
 
-bool str_has_suffix(const char *str, const char *suf)
+bool str_has_prefix(const char *str, const char *prefix)
 {
-    if (!str || !suf) {
+    if (!str || !prefix) {
         return false;
     }
 
     size_t lstr = strlen(str);
-    size_t lsuf = strlen(suf);
-    if (lstr < lsuf) {
+    size_t lprefix = strlen(prefix);
+    if (lstr < lprefix) {
         return false;
     }
 
-    if (strstr(str + lstr - lsuf, suf)) {
+    if (strstr(str, prefix) == str) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool str_has_suffix(const char *str, const char *suffix)
+{
+    if (!str || !suffix) {
+        return false;
+    }
+
+    size_t lstr = strlen(str);
+    size_t lsuffix = strlen(suffix);
+    if (lstr < lsuffix) {
+        return false;
+    }
+
+    if (strstr(str + lstr - lsuffix, suffix)) {
         return true;
     } else {
         return false;
@@ -27,9 +46,8 @@ bool str_is_integer(const char *s)
         return false;
     }
 
-    char c = s[0];
-    while (c != '\0') {
-        if (c < '0' || c > '9') {
+    for (int i = 0; i < strlen(s); ++i) {
+        if (s[i] < '0' || s[i] > '9') {
             return false;
         }
     }

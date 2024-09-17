@@ -1,6 +1,7 @@
 #include "color.h"
 #include "data_unit.h"
 #include "define.h"
+#include "unix_timestamp.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -21,10 +22,19 @@ void show_version()
 
 RET_CODE_E convert(char *arg)
 {
-    RET_CODE_E ret = convert_data_unit(arg);
-    RETURN_IF_ERR(ret);
+    RET_CODE_E ret;
 
-    return RET_OK;
+    ret = convert_data_unit(arg);
+    if (ret != RET_ERR_PARAM) {
+        return ret;
+    }
+
+    ret = convert_unix_timestamp(arg);
+    if (ret != RET_ERR_PARAM) {
+        return ret;
+    }
+
+    return RET_ERR_PARAM;
 }
 
 int main(int argc, char *argv[])
@@ -52,6 +62,7 @@ int main(int argc, char *argv[])
     }
     if (ret != RET_OK) {
         printf(COLOR_FG_RED "ERROR: %d\n" COLOR_RESET, ret);
+        return ret;
     }
 
     return RET_OK;
