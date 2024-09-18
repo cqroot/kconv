@@ -19,7 +19,11 @@ RET_CODE_E convert_unix_timestamp(const char *s)
 
     time_t t = (time_t)atoi(s);
     struct tm lt;
+#if defined (_WIN32) || defined (_WIN64)
+    (void)localtime_s(&lt, &t);
+#else
     (void)localtime_r(&t, &lt);
+#endif
 
     char res[32];
     if (strftime(res, sizeof(res), "%Y-%m-%d %H:%M:%S", &lt) == 0) {
