@@ -7,8 +7,8 @@
 
 void show_help()
 {
-    printf("Usage: uconv [PREFIX]NUMBER[SUFFIX]\n");
-    printf("   or: uconv OPTION\n");
+    printf("Usage: kconv [PREFIX]NUMBER[SUFFIX]\n");
+    printf("   or: kconv OPTION\n");
     printf("\n");
     printf("OPTIONS:\n");
     printf("  -h, --help     display this help and exit\n");
@@ -25,7 +25,7 @@ void show_help()
 
 void show_version()
 {
-    printf("uconv 0.0.1\n");
+    printf("kconv 0.0.1\n");
 }
 
 RET_CODE_E convert(char *arg)
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
 
     RET_CODE_E ret = convert(argv[1]);
     if (ret == RET_ERR_PARAM) {
-        printf("uconv: invalid value '%s'\n\n", argv[1]);
+        printf("kconv: invalid value '%s'\n\n", argv[1]);
         show_help();
         return RET_ERR_PARAM;
     }

@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>🧰 UConv - Ultimate Converter</h1>
+  <h1>🧰 KConv - Keith's Converter</h1>
   <i>A simple terminal-based developer tool.</i>
 </div>
 
@@ -7,20 +7,20 @@
 
 ```bash
 make
-./build/uconv --version
+./build/kconv --version
 ```
 
 ## Usage
 
 ```bash
 # Data Unit Converter
-uconv 100b
-uconv 100B
-uconv 100KB
-uconv 100MB
-uconv 100GB
-uconv 100TB
+kconv 100b
+kconv 100B
+kconv 100KB
+kconv 100MB
+kconv 100GB
+kconv 100TB
 
 # Unix Timestamp Converter
-uconv 1726592455
+kconv 1726592455
 ```

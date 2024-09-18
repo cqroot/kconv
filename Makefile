@@ -1,5 +1,5 @@
 BUILD_DIR=$(CURDIR)/build
-TARGET_EXEC=uconv
+TARGET_EXEC=kconv
 
 SRCS=src/main.c \
 	 src/strutil.c \
