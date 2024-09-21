@@ -1,4 +1,5 @@
 #include "color.h"
+#include "config.h"
 #include "data_unit.h"
 #include "define.h"
 #include "unix_timestamp.h"
@@ -25,7 +26,8 @@ void show_help()
 
 void show_version()
 {
-    printf("kconv 0.0.1\n");
+    printf("kconv %d.%d.%d\n", KCONV_VERSION_MAJOR, KCONV_VERSION_MINOR,
+           KCONV_VERSION_PATCH);
 }
 
 RET_CODE_E convert(char *arg)
