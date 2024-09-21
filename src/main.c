@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-void show_help()
+void ShowHelp()
 {
     printf("Usage: kconv [PREFIX]NUMBER[SUFFIX]\n");
     printf("   or: kconv OPTION\n");
@@ -24,17 +24,17 @@ void show_help()
     printf("    <NUMBER>    (Length 10)\n");
 }
 
-void show_version()
+void ShowVersion()
 {
     printf("kconv %d.%d.%d\n", KCONV_VERSION_MAJOR, KCONV_VERSION_MINOR,
            KCONV_VERSION_PATCH);
 }
 
-RET_CODE_E convert(char *arg)
+RET_CODE_E Convert(char *arg)
 {
     RET_CODE_E ret;
 
-    ret = convert_data_unit(arg);
+    ret = ConvertDataUnit(arg);
     if (ret != RET_ERR_PARAM) {
         return ret;
     }
@@ -50,24 +50,24 @@ RET_CODE_E convert(char *arg)
 int main(int argc, char *argv[])
 {
     if (argc != 2) {
-        show_help();
+        ShowHelp();
         return RET_ERR_PARAM;
     }
 
     if (!strcmp(argv[1], "-h") || !strcmp(argv[1], "--help")) {
-        show_help();
+        ShowHelp();
         return RET_OK;
     }
 
     if (!strcmp(argv[1], "-v") || !strcmp(argv[1], "--version")) {
-        show_version();
+        ShowVersion();
         return RET_OK;
     }
 
-    RET_CODE_E ret = convert(argv[1]);
+    RET_CODE_E ret = Convert(argv[1]);
     if (ret == RET_ERR_PARAM) {
         printf("kconv: invalid value '%s'\n\n", argv[1]);
-        show_help();
+        ShowHelp();
         return RET_ERR_PARAM;
     }
     if (ret != RET_OK) {

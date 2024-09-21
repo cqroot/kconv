@@ -9,7 +9,7 @@
 
 RET_CODE_E convert_unix_timestamp(const char *s)
 {
-    if (!str_is_integer(s)) {
+    if (!STR_IsInteger(s)) {
         return RET_ERR_PARAM;
     }
 

@@ -3,10 +3,10 @@
 
 #include <stdbool.h>
 
-bool str_has_prefix(const char *str, const char *prefix);
-bool str_has_suffix(const char *str, const char *suffix);
-bool str_is_integer(const char *s);
-bool str_is_number(const char *s);
-int str_trim_right(char *s, const char c);
+bool STR_HasPrefix(const char *str, const char *prefix);
+bool STR_HasSuffix(const char *str, const char *suffix);
+bool STR_IsInteger(const char *s);
+bool STR_IsNumber(const char *s);
+int STR_TrimRight(char *s, const char c);
 
 #endif /* ifndef __STRUTIL_H */

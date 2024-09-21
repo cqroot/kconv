@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 
-bool str_has_prefix(const char *str, const char *prefix)
+bool STR_HasPrefix(const char *str, const char *prefix)
 {
     if (!str || !prefix) {
         return false;
@@ -21,7 +21,7 @@ bool str_has_prefix(const char *str, const char *prefix)
     }
 }
 
-bool str_has_suffix(const char *str, const char *suffix)
+bool STR_HasSuffix(const char *str, const char *suffix)
 {
     if (!str || !suffix) {
         return false;
@@ -40,7 +40,7 @@ bool str_has_suffix(const char *str, const char *suffix)
     }
 }
 
-bool str_is_integer(const char *s)
+bool STR_IsInteger(const char *s)
 {
     if (!s) {
         return false;
@@ -55,7 +55,7 @@ bool str_is_integer(const char *s)
     return true;
 }
 
-bool str_is_number(const char *s)
+bool STR_IsNumber(const char *s)
 {
     if (!s) {
         return false;
@@ -76,7 +76,7 @@ bool str_is_number(const char *s)
     return true;
 }
 
-int str_trim_right(char *s, const char c)
+int STR_TrimRight(char *s, const char c)
 {
     size_t len_str = strlen(s);
 

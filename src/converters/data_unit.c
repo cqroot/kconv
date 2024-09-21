@@ -26,7 +26,7 @@ data_unit_t units[] = {
     { "Bit",      "b",  false, 8796093022208 },
 };
 
-static RET_CODE_E convert(const double val, const double base)
+static RET_CODE_E Convert(const double val, const double base)
 {
     printf(COLOR_FG_BLUE "\n" COLOR_RESET);
     printf(COLOR_FG_BLUE " =======================\n" COLOR_RESET);
@@ -39,8 +39,8 @@ static RET_CODE_E convert(const double val, const double base)
 
         char result[100] = { 0 };
         sprintf(result, "%lf", val / base * units[i].base);
-        (void)str_trim_right(result, '0');
-        (void)str_trim_right(result, '.');
+        (void)STR_TrimRight(result, '0');
+        (void)STR_TrimRight(result, '.');
 
         printf(COLOR_FG_CYAN "  %-8s" COLOR_FG_YELLOW " (%2s)" COLOR_RESET
                              ":  %s\n",
@@ -49,21 +49,21 @@ static RET_CODE_E convert(const double val, const double base)
     return RET_OK;
 }
 
-RET_CODE_E convert_data_unit(const char *s)
+RET_CODE_E ConvertDataUnit(const char *s)
 {
     for (int i = 0; i < ARRAY_LEN(units); i++) {
-        if (!str_has_suffix(s, units[i].unit)) {
+        if (!STR_HasSuffix(s, units[i].unit)) {
             continue;
         }
 
         char *substr = (char *)malloc(strlen(s));
         strncpy(substr, s, strlen(s) - strlen(units[i].unit));
-        if (!str_is_number(substr)) {
+        if (!STR_IsNumber(substr)) {
             free(substr);
             return RET_ERR_PARAM;
         }
 
-        RET_CODE_E ret = convert(atof(substr), units[i].base);
+        RET_CODE_E ret = Convert(atof(substr), units[i].base);
 
         free(substr);
         return RET_OK;
