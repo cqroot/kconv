@@ -8,9 +8,9 @@ bool str_has_prefix(const char *str, const char *prefix)
         return false;
     }
 
-    size_t lstr = strlen(str);
-    size_t lprefix = strlen(prefix);
-    if (lstr < lprefix) {
+    size_t len_str = strlen(str);
+    size_t len_prefix = strlen(prefix);
+    if (len_str < len_prefix) {
         return false;
     }
 
@@ -27,13 +27,13 @@ bool str_has_suffix(const char *str, const char *suffix)
         return false;
     }
 
-    size_t lstr = strlen(str);
-    size_t lsuffix = strlen(suffix);
-    if (lstr < lsuffix) {
+    size_t len_str = strlen(str);
+    size_t len_suffix = strlen(suffix);
+    if (len_str < len_suffix) {
         return false;
     }
 
-    if (strstr(str + lstr - lsuffix, suffix)) {
+    if (strstr(str + len_str - len_suffix, suffix)) {
         return true;
     } else {
         return false;
@@ -76,18 +76,20 @@ bool str_is_number(const char *s)
     return true;
 }
 
-void str_trim(char *s, const char c)
+int str_trim_right(char *s, const char c)
 {
+    size_t len_str = strlen(s);
+
     if (!s) {
-        return;
+        return len_str + 1;
     }
 
     for (int i = strlen(s) - 1; i >= 0; --i) {
         if (s[i] == c) {
             s[i] = '\0';
         } else {
-            return;
+            return i + 1;
         }
     }
-    return;
+    return 1;
 }

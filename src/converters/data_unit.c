@@ -39,8 +39,8 @@ static RET_CODE_E convert(const double val, const double base)
 
         char result[100] = { 0 };
         sprintf(result, "%lf", val / base * units[i].base);
-        str_trim(result, '0');
-        str_trim(result, '.');
+        (void)str_trim_right(result, '0');
+        (void)str_trim_right(result, '.');
 
         printf(COLOR_FG_CYAN "  %-8s" COLOR_FG_YELLOW " (%2s)" COLOR_RESET
                              ":  %s\n",
