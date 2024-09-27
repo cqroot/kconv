@@ -1,52 +1,51 @@
 #include "strutil.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
-bool STR_HasPrefix(const char *str, const char *prefix)
+bool StrHasPrefix(const char *str, const char *prefix)
 {
     if (!str || !prefix) {
         return false;
     }
 
-    size_t len_str = strlen(str);
-    size_t len_prefix = strlen(prefix);
-    if (len_str < len_prefix) {
+    const size_t lenStr = strlen(str);
+    const size_t lenPrefix = strlen(prefix);
+    if (lenStr < lenPrefix) {
         return false;
     }
 
-    if (strstr(str, prefix) == str) {
+    if (memcmp(str, prefix, lenPrefix) == 0) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
-bool STR_HasSuffix(const char *str, const char *suffix)
+bool StrHasSuffix(const char *str, const char *suffix)
 {
     if (!str || !suffix) {
         return false;
     }
 
-    size_t len_str = strlen(str);
-    size_t len_suffix = strlen(suffix);
-    if (len_str < len_suffix) {
+    const size_t lenStr = strlen(str);
+    const size_t lenSuffix = strlen(suffix);
+    if (lenStr < lenSuffix) {
         return false;
     }
 
-    if (strstr(str + len_str - len_suffix, suffix)) {
+    if (memcmp(str + lenStr - lenSuffix, suffix, lenSuffix) == 0) {
         return true;
-    } else {
-        return false;
     }
+    return false;
 }
 
-bool STR_IsInteger(const char *s)
+bool StrIsInteger(const char *s)
 {
     if (!s) {
         return false;
     }
 
-    for (int i = 0; i < strlen(s); ++i) {
+    for (size_t i = 0; i < strlen(s); ++i) {
         if (s[i] < '0' || s[i] > '9') {
             return false;
         }
@@ -55,16 +54,16 @@ bool STR_IsInteger(const char *s)
     return true;
 }
 
-bool STR_IsNumber(const char *s)
+bool StrIsNumber(const char *s)
 {
     if (!s) {
         return false;
     }
 
-    int dotcnt = 0;
-    for (int i = 0; i < strlen(s); ++i) {
-        if (s[i] == '.' && dotcnt == 0) {
-            dotcnt++;
+    bool hasDot = false;
+    for (size_t i = 0; i < strlen(s); ++i) {
+        if (s[i] == '.' && !hasDot) {
+            hasDot = true;
             continue;
         }
 
@@ -76,12 +75,12 @@ bool STR_IsNumber(const char *s)
     return true;
 }
 
-int STR_TrimRight(char *s, const char c)
+int StrTrimRight(char *s, const char c)
 {
-    size_t len_str = strlen(s);
+    const size_t lenStr = strlen(s);
 
     if (!s) {
-        return len_str + 1;
+        return lenStr + 1;
     }
 
     for (int i = strlen(s) - 1; i >= 0; --i) {

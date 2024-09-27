@@ -39,8 +39,8 @@ static RET_CODE_E Convert(const double val, const double base)
 
         char result[100] = { 0 };
         sprintf(result, "%lf", val / base * units[i].base);
-        (void)STR_TrimRight(result, '0');
-        (void)STR_TrimRight(result, '.');
+        (void)StrTrimRight(result, '0');
+        (void)StrTrimRight(result, '.');
 
         printf(COLOR_FG_CYAN "  %-8s" COLOR_FG_YELLOW " (%2s)" COLOR_RESET
                              ":  %s\n",
@@ -51,14 +51,14 @@ static RET_CODE_E Convert(const double val, const double base)
 
 RET_CODE_E ConvertDataUnit(const char *s)
 {
-    for (int i = 0; i < ARRAY_LEN(units); i++) {
-        if (!STR_HasSuffix(s, units[i].unit)) {
+    for (size_t i = 0; i < ARRAY_LEN(units); i++) {
+        if (!StrHasSuffix(s, units[i].unit)) {
             continue;
         }
 
         char *substr = (char *)malloc(strlen(s));
         strncpy(substr, s, strlen(s) - strlen(units[i].unit));
-        if (!STR_IsNumber(substr)) {
+        if (!StrIsNumber(substr)) {
             free(substr);
             return RET_ERR_PARAM;
         }
@@ -66,7 +66,7 @@ RET_CODE_E ConvertDataUnit(const char *s)
         RET_CODE_E ret = Convert(atof(substr), units[i].base);
 
         free(substr);
-        return RET_OK;
+        return ret;
     }
 
     return RET_ERR_PARAM;
