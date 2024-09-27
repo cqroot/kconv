@@ -1,3 +1,5 @@
-add_library(converters data_unit.c unix_timestamp.c)
-target_include_directories(converters PUBLIC ../common)
-target_link_libraries(converters PUBLIC common)
+target_sources(
+    kconv
+    PRIVATE data_unit.c data_unit.h unix_timestamp.c unix_timestamp.h
+)
+target_include_directories(kconv PRIVATE .)
